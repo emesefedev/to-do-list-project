@@ -12,12 +12,24 @@ export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate})
     title = newTitle
   }
 
+  const getDescription = () => {
+    return description
+  }
+
   const updateDescription = (newDescription) => {
     description = newDescription
   }
 
+  const getDueDate = () => {
+    return dueDate
+  }
+
   const updateDueDate = (newDueDate) => {
     dueDate = newDueDate
+  }
+
+  const getCompleted = () => {
+    return completed
   }
 
   const updateCompleted = (isCompleted) => {
@@ -27,8 +39,11 @@ export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate})
   return {
     getTitle,
     updateTitle,
+    getDescription,
     updateDescription,
+    getDueDate,
     updateDueDate,
+    getCompleted,
     updateCompleted
   }
 }

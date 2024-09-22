@@ -27,4 +27,8 @@ console.log(defaultProject.getToDoItemsList())
 
 defaultProject.deleteToDoItem(toDo2)
 
+console.log(toDo3.getCompleted())
+toDo3.updateCompleted(true)
+console.log(toDo3.getCompleted())
+
 console.log(defaultProject.getToDoItemsList())
