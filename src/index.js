@@ -27,8 +27,6 @@ console.log(defaultProject.getToDoItemsList())
 
 defaultProject.deleteToDoItem(toDo2)
 
-console.log(toDo3.getCompleted())
-toDo3.updateCompleted(true)
-console.log(toDo3.getCompleted())
+// TODO: Mover de un proyecto a otro
 
 console.log(defaultProject.getToDoItemsList())
