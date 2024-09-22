@@ -1,9 +1,25 @@
 export default class ToDoItem {
-    constructor({title, description = "", dueDate, project}) {
+    constructor({title, description = "", dueDate}) {
       this.title = title
       this.description = description
       this.dueDate = dueDate
-      this.project = project
+
       this.completed = false
+    }
+
+    updateTitle(newTitle) {
+      this.title = newTitle
+    }
+
+    updateDescription(newDescription) {
+      this.description = newDescription
+    }
+
+    updateDueDate(newDueDate) {
+      this.dueDate = newDueDate
+    }
+
+    updateCompleted(isCompleted) {
+      this.completed = isCompleted
     }
 }
