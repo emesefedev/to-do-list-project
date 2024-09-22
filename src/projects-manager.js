@@ -2,22 +2,22 @@ function ProjectsManager() {
     const projectsList = []
 
     const addProject = (project) => {
-        this.projectsList.push(project)
+        projectsList.push(project)
     }
 
-    const removeProject = (project) => {
-        const deletedProjectIdx = this.projectsList.indexOf(project)
+    const deleteProject = (project) => {
+        const deletedProjectIdx = projectsList.indexOf(project)
       
       if (deletedProjectIdx === -1) {
-        // project not found in this.projectsList
+        // project not found in projectsList
         throw new Error(`${project.name} not found`)
       }
 
-      this.projectsList.splice(deletedProjectIdx, 1);
+      projectsList.splice(deletedProjectIdx, 1);
     }
     
     return {
         addProject,
-        removeProject
+        deleteProject
     }
 }

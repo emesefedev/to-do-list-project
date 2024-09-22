@@ -2,31 +2,29 @@ import "./style.css"
 import ToDoItem from "./to-do-item.js"
 import Project from "./project.js"
 
-console.log("Hello emesefedev")
+const defaultProject = Project({projectName: "Default Project"})
 
-const defaultProject = new Project({name: "Default Project"})
-
-const toDo = new ToDoItem({
-    title: "New ToDo", 
-    dueDate: new Date(2024, 11, 1)
+const toDo = ToDoItem({
+    itemTitle: "New ToDo", 
+    itemDueDate: new Date(2024, 11, 1)
 })
 
-const toDo2 = new ToDoItem({
-    title: "New ToDo 2", 
-    dueDate: new Date(2024, 11, 2)
+const toDo2 = ToDoItem({
+    itemTitle: "New ToDo 2", 
+    itemDueDate: new Date(2024, 11, 2)
 })
 
-const toDo3 = new ToDoItem({
-    title: "New ToDo 3", 
-    dueDate: new Date(2024, 11, 3)
+const toDo3 = ToDoItem({
+    itemTitle: "New ToDo 3", 
+    itemDueDate: new Date(2024, 11, 3)
 })
 
 defaultProject.addToDoItem(toDo)
 defaultProject.addToDoItem(toDo2)
 defaultProject.addToDoItem(toDo3)
 
-console.log(defaultProject)
+console.log(defaultProject.getToDoItemsList())
 
-defaultProject.deleteToDoItem(toDo3)
+defaultProject.deleteToDoItem(toDo2)
 
-console.log(defaultProject)
+console.log(defaultProject.getToDoItemsList())

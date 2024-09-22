@@ -1,25 +1,34 @@
-export default class ToDoItem {
-    constructor({title, description = "", dueDate}) {
-      this.title = title
-      this.description = description
-      this.dueDate = dueDate
+export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate}) {
+  let title = itemTitle
+  let description = itemDescription
+  let dueDate = itemDueDate
+  let completed = false
 
-      this.completed = false
-    }
+  const getTitle = () => {
+    return title
+  }
 
-    updateTitle(newTitle) {
-      this.title = newTitle
-    }
+  const updateTitle = (newTitle) => {
+    title = newTitle
+  }
 
-    updateDescription(newDescription) {
-      this.description = newDescription
-    }
+  const updateDescription = (newDescription) => {
+    description = newDescription
+  }
 
-    updateDueDate(newDueDate) {
-      this.dueDate = newDueDate
-    }
+  const updateDueDate = (newDueDate) => {
+    dueDate = newDueDate
+  }
 
-    updateCompleted(isCompleted) {
-      this.completed = isCompleted
-    }
+  const updateCompleted = (isCompleted) => {
+    completed = isCompleted
+  }
+  
+  return {
+    getTitle,
+    updateTitle,
+    updateDescription,
+    updateDueDate,
+    updateCompleted
+  }
 }
