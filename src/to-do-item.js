@@ -35,6 +35,13 @@ export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate})
   const updateCompleted = (isCompleted) => {
     completed = isCompleted
   }
+
+  const displayInformation = ({titleText, descriptionText, dueDateText, completedCheckbox}) => {
+    titleText().textContent = title
+    descriptionText().textContent = description
+    dueDateText().textContent = dueDate
+    completedCheckbox().checked = completed
+  }
   
   return {
     getTitle,
@@ -44,6 +51,7 @@ export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate})
     getDueDate,
     updateDueDate,
     getCompleted,
-    updateCompleted
+    updateCompleted,
+    displayInformation
   }
 }
