@@ -3,6 +3,7 @@ export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate})
   let description = itemDescription
   let dueDate = itemDueDate
   let completed = false
+  const id = self.crypto.randomUUID()
 
   const getTitle = () => {
     return title
@@ -36,11 +37,8 @@ export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate})
     completed = isCompleted
   }
 
-  const displayInformation = ({titleText, descriptionText, dueDateText, completedCheckbox}) => {
-    titleText().textContent = title
-    descriptionText().textContent = description
-    dueDateText().textContent = dueDate
-    completedCheckbox().checked = completed
+  const getId = () => {
+    return id
   }
   
   return {
@@ -52,6 +50,6 @@ export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate})
     updateDueDate,
     getCompleted,
     updateCompleted,
-    displayInformation
+    getId
   }
 }

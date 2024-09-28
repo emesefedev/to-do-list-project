@@ -1,11 +1,7 @@
 import "./style.css"
 import ToDoItem from "./to-do-item.js"
 import Project from "./project.js"
-
-const titleText = () => document.getElementById("titleText")
-const descriptionText = () => document.getElementById("descriptionText")
-const dueDateText = () => document.getElementById("dueDateText")
-const completedCheckbox = () => document.getElementById("completedCheckbox")
+import { createToDoItem } from "./ui.js"
 
 window.addEventListener("load", () => {
     const defaultProject = Project({projectName: "Default Project"})
@@ -16,17 +12,19 @@ window.addEventListener("load", () => {
         itemDueDate: new Date(2024, 11, 1)
     })
 
-    toDo.displayInformation({titleText, descriptionText, dueDateText, completedCheckbox})
-
     const toDo2 = ToDoItem({
         itemTitle: "New ToDo 2", 
-        itemDueDate: new Date(2024, 11, 2)
+        itemDueDate: new Date(2022, 1, 2)
     })
 
     const toDo3 = ToDoItem({
         itemTitle: "New ToDo 3", 
-        itemDueDate: new Date(2024, 11, 3)
+        itemDueDate: new Date(2023, 5, 23)
     })
+
+    createToDoItem(toDo)
+    createToDoItem(toDo2)
+    createToDoItem(toDo3)
 
     defaultProject.addToDoItem(toDo)
     defaultProject.addToDoItem(toDo2)
