@@ -10,3 +10,7 @@
 🎯 [Assignment](https://www.theodinproject.com/lessons/node-path-javascript-todo-list)
 
 👩🏽‍💻 [Result]() In progress...
+
+## Tasks
+
+[] Move to do item from a project to another one

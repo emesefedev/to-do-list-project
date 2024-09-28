@@ -10,6 +10,34 @@ function clearMainGridContainer() {
     }
 }
 
+// PROJECT UI
+
+export function createProject(project) {
+    const container = document.createElement("div")
+    container.classList.add("project-container")
+
+    setProjectName(project, container)
+    setProjectTotalToDoItems(project, container)
+
+    mainGridContainer().appendChild(container)
+}
+
+function setProjectName(project, container) {
+    const name = document.createElement("p")
+    name.classList.add("project-name")
+    name.textContent = project.getProjectName()
+    
+    container.appendChild(name)
+}
+
+function setProjectTotalToDoItems(project, container) {
+    const name = document.createElement("p")
+    name.classList.add("project-total-items")
+    name.textContent = project.getToDoItemsList().length
+    
+    container.appendChild(name)
+}
+
 // TO DO UI
 
 export function createToDoItem(toDo) {

@@ -1,9 +1,10 @@
 import "./style.css"
 import ToDoItem from "./to-do-item.js"
 import Project from "./project.js"
-import { createToDoItem } from "./ui.js"
+import { createToDoItem, createProject } from "./ui.js"
 
 window.addEventListener("load", () => {
+    
     const defaultProject = Project({projectName: "Default Project"})
 
     const toDo = ToDoItem({
@@ -22,20 +23,10 @@ window.addEventListener("load", () => {
         itemDueDate: new Date(2023, 5, 23)
     })
 
-    createToDoItem(toDo)
-    createToDoItem(toDo2)
-    createToDoItem(toDo3)
-
     defaultProject.addToDoItem(toDo)
     defaultProject.addToDoItem(toDo2)
     defaultProject.addToDoItem(toDo3)
 
-    console.log(defaultProject.getToDoItemsList())
-
-    defaultProject.deleteToDoItem(toDo2)
-
-    // TODO: Mover de un proyecto a otro
-
-    console.log(defaultProject.getToDoItemsList())
+    createProject(defaultProject)
 })
 

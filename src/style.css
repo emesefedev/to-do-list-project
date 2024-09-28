@@ -49,6 +49,28 @@ p {
     margin: 0;
 }
 
+/* PROJECT */
+.project-container {
+    border: 2px solid var(--color-dark);
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 16px;
+}
+
+.project-name {
+    color: var(--color-dark);
+    font-size: 1.5em;
+}
+
+.project-total-items {
+    color: var(--color-dark);
+    font-weight: 300;
+}
+
 /* TO DO ITEM */
 .to-do-container {
     border: 2px solid var(--color-light);
@@ -70,7 +92,7 @@ p {
 }
 
 .to-do-due-date {
-
+    font-style: italic;
 }
 
 .to-do-completed {

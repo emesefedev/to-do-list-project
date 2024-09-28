@@ -1,6 +1,14 @@
-export default function Project(projectName) {
+export default function Project({projectName}) {
   let name = projectName
   const toDoItemsList = []
+
+  const getProjectName = () => {
+    return name
+  }
+
+  const updateProjectName = (newName) => {
+    name = newName
+  }
 
   const addToDoItem = (toDoItem) => {
     toDoItemsList.push(toDoItem)
@@ -22,6 +30,7 @@ export default function Project(projectName) {
   }
   
   return {
+    getProjectName,
     addToDoItem,
     deleteToDoItem,
     getToDoItemsList
