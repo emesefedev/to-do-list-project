@@ -1,5 +1,6 @@
 import { formatDate } from "./utils.js"
 
+const mainTitle = () => document.getElementById("main-title")
 const mainGridContainer = () => document.getElementById("main-grid-container")
 
 // GENERAL
@@ -10,11 +11,16 @@ function clearMainGridContainer() {
     }
 }
 
+function changeMainTitle(newTitle) {
+    mainTitle().textContent = newTitle
+}
+
 // PROJECT UI
 
 export function createProject(project) {
     const container = document.createElement("div")
     container.classList.add("project-container")
+    container.addEventListener('click', () => showAllToDoItemsFromProject(project))
 
     setProjectName(project, container)
     setProjectTotalToDoItems(project, container)
@@ -36,6 +42,15 @@ function setProjectTotalToDoItems(project, container) {
     name.textContent = project.getToDoItemsList().length
     
     container.appendChild(name)
+}
+
+function showAllToDoItemsFromProject(project) {
+    clearMainGridContainer()
+    changeMainTitle(project.getProjectName())
+
+    for (const toDoItem of project.getToDoItemsList()) {
+        createToDoItem(toDoItem)
+    }
 }
 
 // TO DO UI
