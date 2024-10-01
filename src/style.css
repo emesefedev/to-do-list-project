@@ -48,6 +48,10 @@ p {
     gap: 16px;
 }
 
+.hidden {
+    display: none;
+}
+
 /* TEXT */
 .text-color-dark {
     color: var(--color-dark);
@@ -55,6 +59,51 @@ p {
 
 .text-color-primary {
     color: var(--color-primary);
+}
+
+/* NAVIGATION BAR */
+.my-nav-bar {
+    display: flex;
+    gap: 16px;
+
+    align-items: center;
+}
+
+#back-button {
+    background-color: transparent;
+    border: 2px solid var(--color-primary);
+    border-radius: 16px;
+
+    color: var(--color-primary);
+
+    width: 50px;
+    height: 50px;
+}
+
+#plus-project-button {
+    background-color: transparent;
+    border: 2px solid var(--color-dark);
+    border-radius: 8px;
+
+    color: var(--color-dark);
+
+    width: 32px;
+    height: 32px;
+
+    margin-left: auto;
+}
+
+#plus-to-do-button {
+    background-color: transparent;
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+
+    color: var(--color-primary);
+
+    width: 32px;
+    height: 32px;
+
+    margin-left: auto;
 }
 
 /* PROJECT */

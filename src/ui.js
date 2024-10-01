@@ -1,7 +1,16 @@
 import { formatDate } from "./utils.js"
+import { projectsManager } from "./index.js"
+
+const mainGridContainer = () => document.getElementById("main-grid-container")
 
 const mainTitle = () => document.getElementById("main-title")
-const mainGridContainer = () => document.getElementById("main-grid-container")
+
+const backButton = () => document.getElementById("back-button")
+backButton().addEventListener("click", () => displayAllProjects(projectsManager.getProjectsList()))
+
+const plusProjectButton = () => document.getElementById("plus-project-button")
+
+const plusToDoButton = () => document.getElementById("plus-to-do-button")
 
 // GENERAL
 
@@ -18,21 +27,30 @@ function changeMainTitle(newTitle, color) {
     mainTitle().classList.add(`text-color-${color}`)
 }
 
-export function showAllProjects(projectsList) {
+function showBackButton() {
+    backButton().classList.remove("hidden")
+}
+
+function hideBackButton() {
+    backButton().classList.add("hidden")
+}
+
+export function displayAllProjects(projectsList) {
     clearMainGridContainer()
+    hideBackButton()
     changeMainTitle("Your Projects", "dark")
 
     for (const project of projectsList) {
-        createProject(project)
+        displayProject(project)
     }
 }
 
 // PROJECT UI
 
-export function createProject(project) {
+export function displayProject(project) {
     const container = document.createElement("div")
     container.classList.add("project-container")
-    container.addEventListener('click', () => showAllToDoItemsFromProject(project))
+    container.addEventListener('click', () => displayAllToDoItemsFromProject(project))
 
     setProjectName(project, container)
     setProjectTotalToDoItems(project, container)
@@ -56,18 +74,19 @@ function setProjectTotalToDoItems(project, container) {
     container.appendChild(name)
 }
 
-function showAllToDoItemsFromProject(project) {
+function displayAllToDoItemsFromProject(project) {
     clearMainGridContainer()
+    showBackButton()
     changeMainTitle(project.getProjectName(), "primary")
 
     for (const toDoItem of project.getToDoItemsList()) {
-        createToDoItem(toDoItem)
+        displayToDoItem(toDoItem)
     }
 }
 
 // TO DO UI
 
-export function createToDoItem(toDo) {
+export function displayToDoItem(toDo) {
     const container = document.createElement("div")
     container.classList.add("to-do-container")
 
