@@ -19,6 +19,13 @@ body {
     padding: 32px;
 }
 
+dialog {
+    border: 1px solid var(--color-darker);
+    border-radius: 16px;
+
+    padding: 16px;
+}
+
 input {
     appearance: none;
 }
@@ -163,3 +170,49 @@ p {
     vertical-align: -2px;
     color: var(--color-light);
 }  
+
+/* MODAL */
+::backdrop {
+    background-image: linear-gradient(
+        45deg,
+        var(--color-darker),
+        var(--color-dark),
+        var(--color-primary),
+        var(--color-light),
+        var(--color-lighter)
+    );
+    opacity: 0.75;
+}
+
+.center-window {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.window-half-width {
+    width: 50vw;
+}
+
+/* FORM */
+
+#new-project-form {
+    height: 300px;
+    
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+.form-grid {
+    display: grid;
+    overflow: auto;
+    grid-template-rows: repeat(1fr, 4);
+    grid-template-columns: 1fr 3fr;
+    row-gap: 10px;
+
+    padding: 16px;
+}
+
