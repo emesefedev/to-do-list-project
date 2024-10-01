@@ -31,6 +31,7 @@ export default function Project({projectName}) {
   
   return {
     getProjectName,
+    updateProjectName,
     addToDoItem,
     deleteToDoItem,
     getToDoItemsList

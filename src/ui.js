@@ -11,8 +11,20 @@ function clearMainGridContainer() {
     }
 }
 
-function changeMainTitle(newTitle) {
+function changeMainTitle(newTitle, color) {
     mainTitle().textContent = newTitle
+
+    mainTitle().classList.remove(...mainTitle().classList)
+    mainTitle().classList.add(`text-color-${color}`)
+}
+
+export function showAllProjects(projectsList) {
+    clearMainGridContainer()
+    changeMainTitle("Your Projects", "dark")
+
+    for (const project of projectsList) {
+        createProject(project)
+    }
 }
 
 // PROJECT UI
@@ -46,7 +58,7 @@ function setProjectTotalToDoItems(project, container) {
 
 function showAllToDoItemsFromProject(project) {
     clearMainGridContainer()
-    changeMainTitle(project.getProjectName())
+    changeMainTitle(project.getProjectName(), "primary")
 
     for (const toDoItem of project.getToDoItemsList()) {
         createToDoItem(toDoItem)

@@ -1,11 +1,17 @@
 import "./style.css"
 import ToDoItem from "./to-do-item.js"
 import Project from "./project.js"
-import { createToDoItem, createProject } from "./ui.js"
+import ProjectsManager from "./projects-manager.js"
+import { showAllProjects } from "./ui.js"
 
 window.addEventListener("load", () => {
     
+    const projectsManager = ProjectsManager()
+
     const defaultProject = Project({projectName: "Default Project"})
+    projectsManager.addProject(defaultProject)
+    const emptyProject = Project({projectName: "Empty Project"})
+    projectsManager.addProject(emptyProject)
 
     const toDo = ToDoItem({
         itemTitle: "New ToDo", 
@@ -27,6 +33,6 @@ window.addEventListener("load", () => {
     defaultProject.addToDoItem(toDo2)
     defaultProject.addToDoItem(toDo3)
 
-    createProject(defaultProject)
+    showAllProjects(projectsManager.getProjectsList())
 })
 

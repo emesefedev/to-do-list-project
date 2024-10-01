@@ -1,5 +1,9 @@
-function ProjectsManager() {
+export default function ProjectsManager() {
     const projectsList = []
+
+    const getProjectsList = () => {
+      return projectsList
+    }
 
     const addProject = (project) => {
         projectsList.push(project)
@@ -17,7 +21,8 @@ function ProjectsManager() {
     }
     
     return {
-        addProject,
-        deleteProject
+      getProjectsList,
+      addProject,
+      deleteProject
     }
 }
