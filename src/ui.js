@@ -1,6 +1,9 @@
 import { formatDate } from "./utils.js"
 import { projectsManager } from "./index.js"
 import Project from "./project.js"
+import ToDoItem from "./to-do-item.js"
+
+let currentProject = null
 
 const mainGridContainer = () => document.getElementById("main-grid-container")
 
@@ -80,6 +83,8 @@ function clearForm(form) {
 }
 
 export function displayAllProjects(projectsList) {
+    currentProject = null
+
     clearMainGridContainer()
 
     hideBackButton()
@@ -119,6 +124,28 @@ cancelNewToDoButton().addEventListener("click", () => {
     newToDoModal().close()
 })
 
+newToDoForm().addEventListener("submit", (event) => {
+    
+    event.preventDefault()
+    event.stopPropagation()
+    newToDoModal().close()
+
+    let formData = new FormData(event.target)
+
+    const newToDo = ToDoItem({
+        itemTitle: formData.get("toDoTitleInput").toString(), 
+        itemDescription: formData.get("toDoDescriptionInput").toString(), 
+        itemDueDate: new Date(formData.get("toDoDueDateInput"))
+    })
+
+    if (currentProject == null) {
+        throw new Error("There should be a current project assigned")
+    }
+    currentProject.addToDoItem(newToDo)
+    
+    displayAllToDoItemsFromProject(currentProject)
+})
+
 // PROJECT UI
 
 export function displayProject(project) {
@@ -149,6 +176,8 @@ function setProjectTotalToDoItems(project, container) {
 }
 
 function displayAllToDoItemsFromProject(project) {
+    currentProject = project
+
     clearMainGridContainer()
 
     showBackButton()

@@ -178,7 +178,7 @@ p {
 
 /* TO DO ITEM */
 .to-do-container {
-    border: 2px solid var(--color-light);
+    border: 2px solid var(--color-primary);
     border-radius: 16px;
 
     display: flex;
