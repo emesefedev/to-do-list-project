@@ -56,15 +56,32 @@ input[type="checkbox"]:checked::before {
 
 input[type="text"] {
     appearance: none;
+    background-color: transparent;
+    border-radius: 8px;
+    height: 1.5em;
+}
+
+.input-dark {
+    border: 2px solid var(--color-dark);
+    color: var(--color-dark);
+}
+
+.input-primary {
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+input[type="date"] {
+    appearance: none;
 
     background-color: transparent;
 
-    border: 2px solid var(--color-dark);
+    border: 2px solid var(--color-primary);
     border-radius: 8px;
     
     height: 1.5em;
     
-    color: var(--color-dark);
+    color: var(--color-primary);
 }
 
 p {
