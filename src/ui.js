@@ -15,7 +15,12 @@ const newToDoButton = () => document.getElementById("new-to-do-button")
 const newProjectForm = () => document.forms[0]
 const newProjectModal = () => document.getElementById("new-project-modal")
 
+const newToDoForm = () => document.forms[1]
+const newToDoModal = () => document.getElementById("new-to-do-modal")
+
 const cancelNewProjectButton = () => document.getElementById("cancel-new-project-button")
+
+const cancelNewToDoButton = () => document.getElementById("cancel-new-to-do-button")
 
 // BUTTONS
 
@@ -24,6 +29,11 @@ backButton().addEventListener("click", () => displayAllProjects(projectsManager.
 newProjectButton().addEventListener("click", () => {
     clearForm(newProjectForm())
     newProjectModal().showModal()
+})
+
+newToDoButton().addEventListener("click", () => {
+    clearForm(newToDoForm())
+    newToDoModal().showModal()
 })
 
 // GENERAL
@@ -65,6 +75,10 @@ function hideNewToDoButton() {
     newToDoButton().classList.add("hidden")
 }
 
+function clearForm(form) {
+    form.reset()
+}
+
 export function displayAllProjects(projectsList) {
     clearMainGridContainer()
 
@@ -80,10 +94,6 @@ export function displayAllProjects(projectsList) {
 }
 
 // PROJECT FORM 
-
-function clearForm(form) {
-    form.reset()
-}
 
 cancelNewProjectButton().addEventListener("click", () => {
     newProjectModal().close()
@@ -101,6 +111,12 @@ newProjectForm().addEventListener("submit", (event) => {
     projectsManager.addProject(newProject)
     
     displayAllProjects(projectsManager.getProjectsList())
+})
+
+// TO DO FORM 
+
+cancelNewToDoButton().addEventListener("click", () => {
+    newToDoModal().close()
 })
 
 // PROJECT UI

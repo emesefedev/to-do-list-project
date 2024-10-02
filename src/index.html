@@ -16,11 +16,8 @@
 
         <div id="main-grid-container"></div>
 
-        <dialog 
-            id="new-project-modal" 
-            class="center-window window-half-width"
-        >
-            <form id="new-project-form">
+        <dialog id="new-project-modal">
+            <form class="new-element-form">
                 <h2 class="text-color-dark">New Project</h2>
 
                 <div class="form-grid">
@@ -35,13 +32,55 @@
                     <button 
                         type="button" 
                         id="cancel-new-project-button" 
-                        class="form-button">
+                        class="form-button button-dark">
                         Cancel
                     </button>
                     <button 
                         id="create-project-button"
-                        class="form-button">
+                        class="form-button button-dark">
                         Create Project
+                    </button>
+                </div>
+            </form>
+        </dialog>
+
+        <dialog id="new-to-do-modal">
+            <form class="new-element-form">
+                <h2 class="text-color-primary">New To Do</h2>
+
+                <div class="form-grid">
+                    <label class="text-color-primary">Title: </label>
+                    <input 
+                        type="text" 
+                        id="to-do-title-input"
+                        name="toDoTitleInput"
+                        required>
+
+                    <label class="text-color-primary">Description: </label>
+                    <input 
+                        type="text" 
+                        id="to-do-description-input"
+                        name="toDoDescriptionInput"
+                        required>
+
+                    <label class="text-color-primary">Due Date: </label>
+                    <input 
+                        type="date" 
+                        id="to-do-due-date-input"
+                        name="toDoDueDateInput"
+                        required>
+                </div>
+                <div class="mtop-auto self-end">
+                    <button 
+                        type="button" 
+                        id="cancel-new-to-do-button" 
+                        class="form-button button-primary">
+                        Cancel
+                    </button>
+                    <button 
+                        id="create-to-do-button"
+                        class="form-button button-primary">
+                        Create To Do
                     </button>
                 </div>
             </form>
