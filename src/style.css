@@ -48,9 +48,14 @@ input[type="checkbox"]:checked::before {
 
 input[type="text"] {
     appearance: none;
+
+    background-color: transparent;
+
     border: 2px solid var(--color-dark);
     border-radius: 8px;
+    
     height: 1.5em;
+    
     color: var(--color-dark);
 }
 
@@ -80,7 +85,7 @@ p {
 }
 
 /* NAVIGATION BAR */
-.my-nav-bar {
+.nav-bar {
     display: flex;
     gap: 16px;
 
@@ -98,7 +103,7 @@ p {
     height: 50px;
 }
 
-#plus-project-button {
+#new-project-button {
     background-color: transparent;
     border: 2px solid var(--color-dark);
     border-radius: 8px;
@@ -111,7 +116,7 @@ p {
     margin-left: auto;
 }
 
-#plus-to-do-button {
+#new-to-do-button {
     background-color: transparent;
     border: 2px solid var(--color-primary);
     border-radius: 8px;

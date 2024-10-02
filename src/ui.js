@@ -8,41 +8,22 @@ const mainTitle = () => document.getElementById("main-title")
 
 const backButton = () => document.getElementById("back-button")
 
-const plusProjectButton = () => document.getElementById("plus-project-button")
+const newProjectButton = () => document.getElementById("new-project-button")
 
-const plusToDoButton = () => document.getElementById("plus-to-do-button")
+const newToDoButton = () => document.getElementById("new-to-do-button")
 
 const newProjectForm = () => document.forms[0]
 const newProjectModal = () => document.getElementById("new-project-modal")
 
-const cancelButton = () => document.getElementById("cancel-button")
-const createProjectButton = () => document.getElementById("create-project-button")
+const cancelNewProjectButton = () => document.getElementById("cancel-new-project-button")
 
 // BUTTONS
 
 backButton().addEventListener("click", () => displayAllProjects(projectsManager.getProjectsList()))
 
-plusProjectButton().addEventListener("click", () => {
+newProjectButton().addEventListener("click", () => {
     clearForm(newProjectForm())
     newProjectModal().showModal()
-})
-
-cancelButton().addEventListener("click", () => {
-    newProjectModal().close()
-})
-
-newProjectForm().addEventListener("submit", (event) => {
-    
-    event.preventDefault()
-    event.stopPropagation()
-    newProjectModal().close()
-
-    let formData = new FormData(event.target)
-
-    const newProject = Project({projectName: formData.get("projectNameInput").toString()})
-    projectsManager.addProject(newProject)
-    console.log(projectsManager.getProjectsList())
-    displayAllProjects(projectsManager.getProjectsList())
 })
 
 // GENERAL
@@ -68,9 +49,29 @@ function hideBackButton() {
     backButton().classList.add("hidden")
 }
 
+function showNewProjectButton() {
+    newProjectButton().classList.remove("hidden")
+}
+
+function hideNewProjectButton() {
+    newProjectButton().classList.add("hidden")
+}
+
+function showNewToDoButton() {
+    newToDoButton().classList.remove("hidden")
+}
+
+function hideNewToDoButton() {
+    newToDoButton().classList.add("hidden")
+}
+
 export function displayAllProjects(projectsList) {
     clearMainGridContainer()
+
     hideBackButton()
+    showNewProjectButton()
+    hideNewToDoButton()
+    
     changeMainTitle("Your Projects", "dark")
 
     for (const project of projectsList) {
@@ -83,6 +84,24 @@ export function displayAllProjects(projectsList) {
 function clearForm(form) {
     form.reset()
 }
+
+cancelNewProjectButton().addEventListener("click", () => {
+    newProjectModal().close()
+})
+
+newProjectForm().addEventListener("submit", (event) => {
+    
+    event.preventDefault()
+    event.stopPropagation()
+    newProjectModal().close()
+
+    let formData = new FormData(event.target)
+
+    const newProject = Project({projectName: formData.get("projectNameInput").toString()})
+    projectsManager.addProject(newProject)
+    
+    displayAllProjects(projectsManager.getProjectsList())
+})
 
 // PROJECT UI
 
@@ -115,7 +134,11 @@ function setProjectTotalToDoItems(project, container) {
 
 function displayAllToDoItemsFromProject(project) {
     clearMainGridContainer()
+
     showBackButton()
+    hideNewProjectButton()
+    showNewToDoButton()
+    
     changeMainTitle(project.getProjectName(), "primary")
 
     for (const toDoItem of project.getToDoItemsList()) {
