@@ -203,14 +203,29 @@ cancelEditToDoButton().addEventListener("click", () => {
     editToDoModal().close()
 })
 
+editToDoForm().addEventListener("submit", (event) => {
+    
+    event.preventDefault()
+    event.stopPropagation()
+    editToDoModal().close()
+
+    let formData = new FormData(event.target)
+
+    currentEditingToDo.updateTitle(formData.get("editToDoTitleInput"))
+    currentEditingToDo.updateDescription(formData.get("editToDoDescriptionInput"))
+    currentEditingToDo.updateDueDate(new Date(formData.get("editToDoDueDateInput")))
+    
+    displayAllToDoItemsFromProject(currentOpenProject)
+
+    currentEditingToDo = null
+})
+
 function showEditToDoFormWithValues(toDo) {
     currentEditingToDo = toDo
 
     editToDoTitleInput().value = toDo.getTitle()
     editToDoDescriptionInput().value = toDo.getDescription()
-    console.log(toDo.getDueDate())
-    editToDoDueDateInput().value = toDo.getDueDate()
-    console.log(editToDoDueDateInput().value) //TODO: not working
+    editToDoDueDateInput().value = toDo.getDueDate().toISOString().split('T')[0]
 }
 
 // PROJECT UI

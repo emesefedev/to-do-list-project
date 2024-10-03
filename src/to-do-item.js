@@ -1,4 +1,4 @@
-export default function ToDoItem({itemTitle, itemDescription = "", itemDueDate}) {
+export default function ToDoItem({itemTitle, itemDescription, itemDueDate}) {
   let title = itemTitle
   let description = itemDescription
   let dueDate = itemDueDate
