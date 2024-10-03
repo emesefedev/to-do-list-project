@@ -5,6 +5,7 @@ import ToDoItem from "./to-do-item.js"
 
 let currentOpenProject = null
 let currentEditingProject = null
+let currentEditingToDo = null
 
 const mainGridContainer = () => document.getElementById("main-grid-container")
 
@@ -26,11 +27,19 @@ const editProjectForm = () => document.forms[2]
 const editProjectModal = () => document.getElementById("edit-project-modal")
 const editProjectNameInput = () => document.getElementById("edit-project-name-input")
 
+const editToDoForm = () => document.forms[3]
+const editToDoModal = () => document.getElementById("edit-to-do-modal")
+const editToDoTitleInput = () => document.getElementById("edit-to-do-title-input")
+const editToDoDescriptionInput = () => document.getElementById("edit-to-do-description-input")
+const editToDoDueDateInput = () => document.getElementById("edit-to-do-due-date-input")
+
 const cancelNewProjectButton = () => document.getElementById("cancel-new-project-button")
 
 const cancelNewToDoButton = () => document.getElementById("cancel-new-to-do-button")
 
 const cancelEditProjectButton = () => document.getElementById("cancel-edit-project-button")
+
+const cancelEditToDoButton = () => document.getElementById("cancel-edit-to-do-button")
 
 // BUTTONS
 
@@ -52,7 +61,7 @@ function clearMainGridContainer() {
     while (mainGridContainer().firstChild) {
         mainGridContainer().removeChild(mainGridContainer().lastChild)
     }
-    mainGridContainer().className = ""
+    mainGridContainer().classList.remove(...mainGridContainer().classList)
 }
 
 function changeMainTitle(newTitle, color) {
@@ -151,6 +160,8 @@ editProjectForm().addEventListener("submit", (event) => {
     currentEditingProject.updateProjectName(formData.get("editProjectNameInput"))
     
     displayAllProjects(projectsManager.getProjectsList())
+
+    currentEditingProject = null
 })
 
 function showEditProjectFormWithValues(project) {
@@ -186,6 +197,21 @@ newToDoForm().addEventListener("submit", (event) => {
     
     displayAllToDoItemsFromProject(currentOpenProject)
 })
+
+cancelEditToDoButton().addEventListener("click", () => {
+    currentEditingToDo = null
+    editToDoModal().close()
+})
+
+function showEditToDoFormWithValues(toDo) {
+    currentEditingToDo = toDo
+
+    editToDoTitleInput().value = toDo.getTitle()
+    editToDoDescriptionInput().value = toDo.getDescription()
+    console.log(toDo.getDueDate())
+    editToDoDueDateInput().value = toDo.getDueDate()
+    console.log(editToDoDueDateInput().value) //TODO: not working
+}
 
 // PROJECT UI
 
@@ -354,6 +380,9 @@ function setEditToDoButton(toDo, container) {
 
     editToDoButton.addEventListener('click', (event) => {
         event.stopPropagation()
+        clearForm(editToDoForm())
+        showEditToDoFormWithValues(toDo)
+        editToDoModal().showModal()
     })
     
     container.appendChild(editToDoButton)

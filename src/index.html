@@ -117,5 +117,49 @@
                 </div>
             </form>
         </dialog>
+
+        <dialog id="edit-to-do-modal">
+            <form class="form-display">
+                <h2 class="text-color-primary">Edit To Do</h2>
+
+                <div class="form-grid">
+                    <label class="text-color-primary">Title: </label>
+                    <input 
+                        type="text" 
+                        id="edit-to-do-title-input"
+                        class="input-primary"
+                        name="EditToDoTitleInput"
+                        required>
+
+                    <label class="text-color-primary">Description: </label>
+                    <input 
+                        type="text" 
+                        id="edit-to-do-description-input"
+                        class="input-primary"
+                        name="EditToDoDescriptionInput"
+                        required>
+
+                    <label class="text-color-primary">Due Date: </label>
+                    <input 
+                        type="date" 
+                        id="edit-to-do-due-date-input"
+                        name="EditToDoDueDateInput"
+                        required>
+                </div>
+                <div class="mtop-auto self-end">
+                    <button 
+                        type="button" 
+                        id="cancel-edit-to-do-button" 
+                        class="form-button button-primary">
+                        Cancel
+                    </button>
+                    <button 
+                        id="edit-to-do-button"
+                        class="form-button button-primary">
+                        Edit To Do
+                    </button>
+                </div>
+            </form>
+        </dialog>
     </body>
 </html>
