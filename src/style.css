@@ -185,23 +185,14 @@ p {
     font-weight: 300;
 }
 
-.delete-project-button {
-    background-color: transparent;
-    border: 1px solid var(--color-dark);
-    border-radius: 8px;
-
-    color: var(--color-dark);
-    align-self: flex-end;
-
-    width: 32px;
-    height: 32px;
-
-    margin-top: auto;
+.trash-icon-dark {
+    content: url("images/trash-icon-dark.svg");
+    height: 80%;
 }
 
-.delete-project-button:hover {
-    border: 1px solid var(--color-alert);
-    color: var(--color-alert);
+.edit-icon-dark {
+    content: url("images/edit-icon-dark.svg");
+    height: 80%;
 }
 
 /* TO DO ITEM */
@@ -240,24 +231,16 @@ p {
     color: var(--color-light);
 }  
 
-.delete-to-do-button {
-    background-color: transparent;
-    border: 1px solid var(--color-primary);
-    border-radius: 8px;
-
-    color: var(--color-primary);
-    align-self: flex-end;
-
-    width: 32px;
-    height: 32px;
-
-    margin-top: auto;
+.trash-icon-primary {
+    content: url("images/trash-icon-primary.svg");
+    height: 80%;
 }
 
-.delete-to-do-button:hover {
-    border: 1px solid var(--color-alert);
-    color: var(--color-alert);
+.edit-icon-primary {
+    content: url("images/edit-icon-primary.svg");
+    height: 80%;
 }
+
 
 /* MODAL */
 ::backdrop {
@@ -300,16 +283,6 @@ p {
     height: 1.75em;
 }
 
-.button-dark {
-    color: var(--color-dark);
-    border: 1px solid var(--color-dark);
-}
-
-.button-primary {
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-}
-
 .form-button:hover {
     color: var(--color-lighter);
     border: 1px solid var(--color-lighter);
@@ -324,4 +297,40 @@ p {
 
 .self-end {
     align-self: end;
+}
+
+/* BUTTONS */
+
+.edit-delete-buttons-container {
+    display: flex;
+    gap: 8px;
+
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.square-button {
+    background-color: transparent;
+    border-radius: 8px;
+
+    width: 32px;
+    height: 32px;
+}
+
+.button-dark {
+    color: var(--color-dark);
+    border: 1px solid var(--color-dark);
+}
+
+.button-primary {
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.delete-button:hover {
+    border: 1px solid var(--color-alert);
+}
+
+.edit-button:hover {
+    border: 1px solid var(--color-lighter);
 }

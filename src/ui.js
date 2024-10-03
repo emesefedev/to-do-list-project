@@ -165,7 +165,7 @@ export function displayProject(project) {
 
     setProjectName(project, container)
     setProjectTotalToDoItems(project, container)
-    setDeleteProjectButton(project, container)
+    setEditAndDeleteProjectButtons(project, container)
 
     mainGridContainer().appendChild(container)
 }
@@ -186,10 +186,40 @@ function setProjectTotalToDoItems(project, container) {
     container.appendChild(totalToDoItems)
 }
 
+function setEditAndDeleteProjectButtons(project, container) {
+    const div = document.createElement("div")
+    div.classList.add("edit-delete-buttons-container")
+
+    setEditProjectButton(project, div)
+    setDeleteProjectButton(project, div)
+
+    container.appendChild(div)
+}
+
+function setEditProjectButton(project, container) {
+    const editProjectButton = document.createElement("button")
+    editProjectButton.classList.add("square-button", "button-dark", "edit-button")
+
+    const icon = document.createElement("div")
+    icon.classList.add("edit-icon-dark")
+    editProjectButton.appendChild(icon)
+
+    editProjectButton.addEventListener('click', (event) => {
+        event.stopPropagation()
+        
+        
+    })
+    
+    container.appendChild(editProjectButton)
+}
+
 function setDeleteProjectButton(project, container) {
     const deleteProjectButton = document.createElement("button")
-    deleteProjectButton.classList.add("delete-project-button")
-    deleteProjectButton.textContent = "X"
+    deleteProjectButton.classList.add("square-button", "button-dark", "delete-button")
+
+    const icon = document.createElement("div")
+    icon.classList.add("trash-icon-dark")
+    deleteProjectButton.appendChild(icon)
 
     deleteProjectButton.addEventListener('click', (event) => {
         event.stopPropagation()
@@ -230,8 +260,7 @@ export function displayToDoItem(toDo) {
     setToDoTitle(toDo, container)
     setToDoDescription(toDo, container)
     setToDoDueDate(toDo, container)
-    setToDoCompleted(toDo, container)
-    setDeleteToDoButton(toDo, container)
+    setEditAndDeleteToDoButtons(toDo, container)
 
     mainGridContainer().appendChild(container)
 }
@@ -273,10 +302,38 @@ function setToDoCompleted(toDo, container) {
     container.appendChild(completed)
 }
 
+function setEditAndDeleteToDoButtons(toDo, container) {
+    const div = document.createElement("div")
+    div.classList.add("edit-delete-buttons-container")
+
+    setEditToDoButton(toDo, div)
+    setDeleteToDoButton(toDo, div)
+
+    container.appendChild(div)
+}
+
+function setEditToDoButton(toDo, container) {
+    const editToDoButton = document.createElement("button")
+    editToDoButton.classList.add("square-button", "button-primary", "edit-button")
+
+    const icon = document.createElement("div")
+    icon.classList.add("edit-icon-primary")
+    editToDoButton.appendChild(icon)
+
+    editToDoButton.addEventListener('click', (event) => {
+        event.stopPropagation()
+    })
+    
+    container.appendChild(editToDoButton)
+}
+
 function setDeleteToDoButton(toDo, container) {
     const deleteToDoButton = document.createElement("button")
-    deleteToDoButton.classList.add("delete-to-do-button")
-    deleteToDoButton.textContent = "X"
+    deleteToDoButton.classList.add("square-button", "button-primary", "delete-button")
+    
+    const icon = document.createElement("div")
+    icon.classList.add("trash-icon-primary")
+    deleteToDoButton.appendChild(icon)
 
     deleteToDoButton.addEventListener('click', (event) => {
         event.stopPropagation()
