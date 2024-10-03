@@ -13,4 +13,4 @@
 
 ## Tasks
 
-[] Move to do item from a project to another one
+[ ] Move to do item from a project to another one
