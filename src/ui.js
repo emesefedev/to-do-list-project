@@ -3,7 +3,8 @@ import { projectsManager } from "./index.js"
 import Project from "./project.js"
 import ToDoItem from "./to-do-item.js"
 
-let currentProject = null
+let currentOpenProject = null
+let currentEditingProject = null
 
 const mainGridContainer = () => document.getElementById("main-grid-container")
 
@@ -21,9 +22,15 @@ const newProjectModal = () => document.getElementById("new-project-modal")
 const newToDoForm = () => document.forms[1]
 const newToDoModal = () => document.getElementById("new-to-do-modal")
 
+const editProjectForm = () => document.forms[2]
+const editProjectModal = () => document.getElementById("edit-project-modal")
+const editProjectNameInput = () => document.getElementById("edit-project-name-input")
+
 const cancelNewProjectButton = () => document.getElementById("cancel-new-project-button")
 
 const cancelNewToDoButton = () => document.getElementById("cancel-new-to-do-button")
+
+const cancelEditProjectButton = () => document.getElementById("cancel-edit-project-button")
 
 // BUTTONS
 
@@ -45,6 +52,7 @@ function clearMainGridContainer() {
     while (mainGridContainer().firstChild) {
         mainGridContainer().removeChild(mainGridContainer().lastChild)
     }
+    mainGridContainer().className = ""
 }
 
 function changeMainTitle(newTitle, color) {
@@ -88,7 +96,7 @@ function displayMessage(message) {
 }
 
 export function displayAllProjects(projectsList) {
-    currentProject = null
+    currentOpenProject = null
 
     clearMainGridContainer()
 
@@ -128,6 +136,29 @@ newProjectForm().addEventListener("submit", (event) => {
     displayAllProjects(projectsManager.getProjectsList())
 })
 
+cancelEditProjectButton().addEventListener("click", () => {
+    currentEditingProject = null
+    editProjectModal().close()
+})
+
+editProjectForm().addEventListener("submit", (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    editProjectModal().close()
+
+    let formData = new FormData(event.target)
+
+    currentEditingProject.updateProjectName(formData.get("editProjectNameInput"))
+    
+    displayAllProjects(projectsManager.getProjectsList())
+})
+
+function showEditProjectFormWithValues(project) {
+    currentEditingProject = project
+
+    editProjectNameInput().value = project.getProjectName()
+}
+
 // TO DO FORM 
 
 cancelNewToDoButton().addEventListener("click", () => {
@@ -148,12 +179,12 @@ newToDoForm().addEventListener("submit", (event) => {
         itemDueDate: new Date(formData.get("toDoDueDateInput"))
     })
 
-    if (currentProject == null) {
+    if (currentOpenProject == null) {
         throw new Error("There should be a current project assigned")
     }
-    currentProject.addToDoItem(newToDo)
+    currentOpenProject.addToDoItem(newToDo)
     
-    displayAllToDoItemsFromProject(currentProject)
+    displayAllToDoItemsFromProject(currentOpenProject)
 })
 
 // PROJECT UI
@@ -206,8 +237,9 @@ function setEditProjectButton(project, container) {
 
     editProjectButton.addEventListener('click', (event) => {
         event.stopPropagation()
-        
-        
+        clearForm(editProjectForm())
+        showEditProjectFormWithValues(project)
+        editProjectModal().showModal()
     })
     
     container.appendChild(editProjectButton)
@@ -231,7 +263,7 @@ function setDeleteProjectButton(project, container) {
 }
 
 function displayAllToDoItemsFromProject(project) {
-    currentProject = project
+    currentOpenProject = project
 
     clearMainGridContainer()
 
@@ -337,8 +369,8 @@ function setDeleteToDoButton(toDo, container) {
 
     deleteToDoButton.addEventListener('click', (event) => {
         event.stopPropagation()
-        currentProject.deleteToDoItem(toDo)
-        displayAllToDoItemsFromProject(currentProject)
+        currentOpenProject.deleteToDoItem(toDo)
+        displayAllToDoItemsFromProject(currentOpenProject)
     })
     
     container.appendChild(deleteToDoButton)

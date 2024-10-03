@@ -5,20 +5,10 @@ export function formatDate(date) {
 
 function getFullDay(date) {
     let day = date.getDate()
-    if (day < 10)
-    {
-        day = `0${day}`
-    }
-
-    return day
+    return day.toString().padStart(2, '0')
 }
 
 function getFullMonth(date) {
-    let month = date.getMonth()
-    if (month < 10)
-    {
-        month = `0${month}`
-    }
-
-    return month
+    let month = date.getMonth() + 1
+    return month.toString().padStart(2, '0')
 }

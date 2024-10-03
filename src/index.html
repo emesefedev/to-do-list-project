@@ -17,7 +17,7 @@
         <div id="main-grid-container"></div>
 
         <dialog id="new-project-modal">
-            <form class="new-element-form">
+            <form class="form-display">
                 <h2 class="text-color-dark">New Project</h2>
 
                 <div class="form-grid">
@@ -46,7 +46,7 @@
         </dialog>
 
         <dialog id="new-to-do-modal">
-            <form class="new-element-form">
+            <form class="form-display">
                 <h2 class="text-color-primary">New To Do</h2>
 
                 <div class="form-grid">
@@ -84,6 +84,35 @@
                         id="create-to-do-button"
                         class="form-button button-primary">
                         Create To Do
+                    </button>
+                </div>
+            </form>
+        </dialog>
+
+        <dialog id="edit-project-modal">
+            <form class="form-display">
+                <h2 class="text-color-dark">Edit Project</h2>
+
+                <div class="form-grid">
+                    <label class="text-color-dark">Name: </label>
+                    <input 
+                        type="text" 
+                        id="edit-project-name-input"
+                        class="input-dark"
+                        name="editProjectNameInput"
+                        required>
+                </div>
+                <div class="mtop-auto self-end">
+                    <button 
+                        type="button" 
+                        id="cancel-edit-project-button" 
+                        class="form-button button-dark">
+                        Cancel
+                    </button>
+                    <button 
+                        id="edit-project-button"
+                        class="form-button button-dark">
+                        Edit Project
                     </button>
                 </div>
             </form>

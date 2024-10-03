@@ -32,10 +32,7 @@ dialog {
     width: 50vw;
 
     /* Center form*/
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -75%);
+    margin: 30vh auto;
 }
 
 input {
@@ -257,7 +254,7 @@ p {
 
 /* FORM */
 
-.new-element-form {
+.form-display {
     height: 300px;
     
     display: flex;
