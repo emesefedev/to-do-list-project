@@ -1,8 +1,10 @@
-import { formatDate } from "./utils.js"
 import { projectsManager } from "./index.js"
+import { save } from "./local-storage.js"
 import Project from "./project.js"
 import ToDoItem from "./to-do-item.js"
+import { formatDate } from "./utils.js"
 
+//TODO: configurar webpack para los svg
 let currentOpenProject = null
 let currentEditingProject = null
 let currentEditingToDo = null
@@ -143,6 +145,7 @@ newProjectForm().addEventListener("submit", (event) => {
     projectsManager.addProject(newProject)
     
     displayAllProjects(projectsManager.getProjectsList())
+    save(projectsManager)
 })
 
 cancelEditProjectButton().addEventListener("click", () => {
@@ -162,6 +165,7 @@ editProjectForm().addEventListener("submit", (event) => {
     displayAllProjects(projectsManager.getProjectsList())
 
     currentEditingProject = null
+    save(projectsManager)
 })
 
 function showEditProjectFormWithValues(project) {
@@ -196,6 +200,7 @@ newToDoForm().addEventListener("submit", (event) => {
     currentOpenProject.addToDoItem(newToDo)
     
     displayAllToDoItemsFromProject(currentOpenProject)
+    save(projectsManager)
 })
 
 cancelEditToDoButton().addEventListener("click", () => {
@@ -218,6 +223,7 @@ editToDoForm().addEventListener("submit", (event) => {
     displayAllToDoItemsFromProject(currentOpenProject)
 
     currentEditingToDo = null
+    save(projectsManager)
 })
 
 function showEditToDoFormWithValues(toDo) {
@@ -298,6 +304,7 @@ function setDeleteProjectButton(project, container) {
         event.stopPropagation()
         projectsManager.deleteProject(project)
         displayAllProjects(projectsManager.getProjectsList())
+        save(projectsManager)
     })
     
     container.appendChild(deleteProjectButton)
@@ -333,6 +340,7 @@ export function displayToDoItem(toDo) {
     setToDoTitle(toDo, container)
     setToDoDescription(toDo, container)
     setToDoDueDate(toDo, container)
+    setToDoCompleted(toDo, container)
     setEditAndDeleteToDoButtons(toDo, container)
 
     mainGridContainer().appendChild(container)
@@ -368,9 +376,10 @@ function setToDoCompleted(toDo, container) {
     completed.classList.add("to-do-completed")
     completed.checked = toDo.getCompleted()
 
-    const toDoId = toDo.getId()
-    completed.id = `completed-${toDoId}`
-    completed.name = `completed-${toDoId}`
+    completed.addEventListener("change", function() {
+        toDo.updateCompleted(this.checked)
+        save(projectsManager)
+    })
 
     container.appendChild(completed)
 }
@@ -415,6 +424,7 @@ function setDeleteToDoButton(toDo, container) {
         event.stopPropagation()
         currentOpenProject.deleteToDoItem(toDo)
         displayAllToDoItemsFromProject(currentOpenProject)
+        save(projectsManager)
     })
     
     container.appendChild(deleteToDoButton)

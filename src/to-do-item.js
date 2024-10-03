@@ -1,9 +1,8 @@
-export default function ToDoItem({itemTitle, itemDescription, itemDueDate}) {
+export default function ToDoItem({itemTitle, itemDescription, itemDueDate, itemCompleted = false}) {
   let title = itemTitle
   let description = itemDescription
   let dueDate = itemDueDate
-  let completed = false
-  const id = self.crypto.randomUUID()
+  let completed = itemCompleted
 
   const getTitle = () => {
     return title
@@ -37,9 +36,7 @@ export default function ToDoItem({itemTitle, itemDescription, itemDueDate}) {
     completed = isCompleted
   }
 
-  const getId = () => {
-    return id
-  }
+  const state = () => ({title, description, dueDate: dueDate.toISOString(), completed})
   
   return {
     getTitle,
@@ -50,6 +47,6 @@ export default function ToDoItem({itemTitle, itemDescription, itemDueDate}) {
     updateDueDate,
     getCompleted,
     updateCompleted,
-    getId
+    state
   }
 }
