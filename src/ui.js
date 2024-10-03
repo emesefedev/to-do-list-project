@@ -82,6 +82,11 @@ function clearForm(form) {
     form.reset()
 }
 
+function displayMessage(message) {
+    mainGridContainer().textContent = message
+    mainGridContainer().classList.add("text-color-alert", "text-alert")
+}
+
 export function displayAllProjects(projectsList) {
     currentProject = null
 
@@ -93,9 +98,14 @@ export function displayAllProjects(projectsList) {
     
     changeMainTitle("Your Projects", "dark")
 
-    for (const project of projectsList) {
-        displayProject(project)
+    if (projectsList.length <= 0) {
+        displayMessage("There are no projects")
+    } else {
+        for (const project of projectsList) {
+            displayProject(project)
+        }    
     }
+    
 }
 
 // PROJECT FORM 
@@ -155,6 +165,7 @@ export function displayProject(project) {
 
     setProjectName(project, container)
     setProjectTotalToDoItems(project, container)
+    setDeleteProjectButton(project, container)
 
     mainGridContainer().appendChild(container)
 }
@@ -168,11 +179,25 @@ function setProjectName(project, container) {
 }
 
 function setProjectTotalToDoItems(project, container) {
-    const name = document.createElement("p")
-    name.classList.add("project-total-items")
-    name.textContent = project.getToDoItemsList().length
+    const totalToDoItems = document.createElement("p")
+    totalToDoItems.classList.add("project-total-items")
+    totalToDoItems.textContent = project.getToDoItemsList().length
     
-    container.appendChild(name)
+    container.appendChild(totalToDoItems)
+}
+
+function setDeleteProjectButton(project, container) {
+    const deleteProjectButton = document.createElement("button")
+    deleteProjectButton.classList.add("delete-project-button")
+    deleteProjectButton.textContent = "X"
+
+    deleteProjectButton.addEventListener('click', (event) => {
+        event.stopPropagation()
+        projectsManager.deleteProject(project)
+        displayAllProjects(projectsManager.getProjectsList())
+    })
+    
+    container.appendChild(deleteProjectButton)
 }
 
 function displayAllToDoItemsFromProject(project) {

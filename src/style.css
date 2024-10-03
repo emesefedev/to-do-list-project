@@ -4,6 +4,7 @@
     --color-light: rgb(68, 229, 231);
     --color-darker: rgb(92, 122, 255);
     --color-lighter: rgb(115, 251, 211);
+    --color-alert: rgb(235, 94, 85);
 
     --min-item-width: 200px;
     --max-item-width: 350px;
@@ -101,6 +102,14 @@ p {
 }
 
 /* TEXT */
+.text-alert {
+    font-size: 1.5em;
+}
+
+.text-color-alert {
+    color: var(--color-alert);
+}
+
 .text-color-dark {
     color: var(--color-dark);
 }
@@ -174,6 +183,23 @@ p {
 .project-total-items {
     color: var(--color-dark);
     font-weight: 300;
+}
+
+.delete-project-button {
+    background-color: transparent;
+    border: 1px solid var(--color-dark);
+    border-radius: 8px;
+
+    color: var(--color-dark);
+    align-self: flex-end;
+
+    width: 32px;
+    height: 32px;
+}
+
+.delete-project-button:hover {
+    border: 1px solid var(--color-alert);
+    color: var(--color-alert);
 }
 
 /* TO DO ITEM */
