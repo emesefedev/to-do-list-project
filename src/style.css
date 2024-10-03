@@ -195,6 +195,8 @@ p {
 
     width: 32px;
     height: 32px;
+
+    margin-top: auto;
 }
 
 .delete-project-button:hover {
@@ -237,6 +239,25 @@ p {
     vertical-align: -2px;
     color: var(--color-light);
 }  
+
+.delete-to-do-button {
+    background-color: transparent;
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+
+    color: var(--color-primary);
+    align-self: flex-end;
+
+    width: 32px;
+    height: 32px;
+
+    margin-top: auto;
+}
+
+.delete-to-do-button:hover {
+    border: 1px solid var(--color-alert);
+    color: var(--color-alert);
+}
 
 /* MODAL */
 ::backdrop {

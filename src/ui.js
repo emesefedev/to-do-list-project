@@ -211,8 +211,13 @@ function displayAllToDoItemsFromProject(project) {
     
     changeMainTitle(project.getProjectName(), "primary")
 
-    for (const toDoItem of project.getToDoItemsList()) {
-        displayToDoItem(toDoItem)
+    const toDoItemsList = project.getToDoItemsList()
+    if (toDoItemsList.length <= 0) {
+        displayMessage("There are no to do items")
+    } else {
+        for (const toDoItem of toDoItemsList) {
+            displayToDoItem(toDoItem)
+        }
     }
 }
 
@@ -226,6 +231,7 @@ export function displayToDoItem(toDo) {
     setToDoDescription(toDo, container)
     setToDoDueDate(toDo, container)
     setToDoCompleted(toDo, container)
+    setDeleteToDoButton(toDo, container)
 
     mainGridContainer().appendChild(container)
 }
@@ -265,4 +271,18 @@ function setToDoCompleted(toDo, container) {
     completed.name = `completed-${toDoId}`
 
     container.appendChild(completed)
+}
+
+function setDeleteToDoButton(toDo, container) {
+    const deleteToDoButton = document.createElement("button")
+    deleteToDoButton.classList.add("delete-to-do-button")
+    deleteToDoButton.textContent = "X"
+
+    deleteToDoButton.addEventListener('click', (event) => {
+        event.stopPropagation()
+        currentProject.deleteToDoItem(toDo)
+        displayAllToDoItemsFromProject(currentProject)
+    })
+    
+    container.appendChild(deleteToDoButton)
 }
