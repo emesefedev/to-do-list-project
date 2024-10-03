@@ -7,7 +7,8 @@ import { formatDate } from "./utils.js"
 //TODO: configurar webpack para los svg
 //TODO: hacer build de webpack
 //TODO: subir build de webpack como página nueva
-//TODO: usar alias para webpack
+//TODO: usar alias para webpack build
+//TODO: filtrar to do items completados
 
 let currentOpenProject = null
 let currentEditingProject = null
