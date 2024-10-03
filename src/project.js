@@ -1,6 +1,6 @@
-export default function Project({projectName}) {
+export default function Project({projectName, toDoItems = []}) {
   let name = projectName
-  const toDoItemsList = []
+  const toDoItemsList = toDoItems
 
   const getProjectName = () => {
     return name
@@ -28,12 +28,15 @@ export default function Project({projectName}) {
   const getToDoItemsList = () => {
     return toDoItemsList
   }
+
+  const state = () => ({name, todos: toDoItemsList.map(it => it.state())})
   
   return {
     getProjectName,
     updateProjectName,
     addToDoItem,
     deleteToDoItem,
-    getToDoItemsList
+    getToDoItemsList,
+    state
   }
 }

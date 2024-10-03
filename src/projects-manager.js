@@ -1,5 +1,5 @@
-export default function ProjectsManager() {
-    const projectsList = []
+export default function ProjectsManager({ projects = []}={}) {
+    const projectsList = projects
 
     const getProjectsList = () => {
       return projectsList
@@ -19,10 +19,13 @@ export default function ProjectsManager() {
 
       projectsList.splice(deletedProjectIdx, 1);
     }
+
+    const state = () => projectsList.map(it => it.state())
     
     return {
       getProjectsList,
       addProject,
-      deleteProject
+      deleteProject,
+      state
     }
 }
