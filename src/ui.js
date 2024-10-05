@@ -4,7 +4,9 @@ import Project from "./project.js"
 import ToDoItem from "./to-do-item.js"
 import { formatDate } from "./utils.js"
 
-//TODO: configurar webpack para los svg
+//TODO: subir build de webpack como página nueva
+//TODO: filtrar to do items completados
+
 let currentOpenProject = null
 let currentEditingProject = null
 let currentEditingToDo = null
