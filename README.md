@@ -14,3 +14,4 @@
 ## Tasks
 
 - [ ] Move to do item from a project to another one
+- [ ] Filter to do items in a project
